@@ -13,7 +13,7 @@ configMapGenerator:
       - site/style.css
 
 commonAnnotations:
-  release.argocd.io/source-sha: "4ab4a5cdfec24bd2ec00ad8765d300b72465029f"
+  release.argocd.io/source-sha: "8f30f09268b8dddea6ebd282156cf42dbb3c6e53"
 
 generatorOptions:
   disableNameSuffixHash: true
