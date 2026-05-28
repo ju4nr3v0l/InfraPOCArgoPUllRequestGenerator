@@ -41,3 +41,51 @@ En esta version:
 ## Nota
 
 El directorio `generated/` es parte del flujo deseado en esta POC. No se edita a mano en operacion normal; lo administra GitHub Actions.
+
+## Configuracion requerida en GitHub
+
+### Repo `landing`
+
+#### Repository secret obligatorio
+
+- `INFRA_REPO_TOKEN`
+
+Ubicacion:
+
+- `landing repo > Settings > Secrets and variables > Actions > Repository secrets`
+
+Permiso esperado:
+
+- escritura sobre el repo `InfraPOCArgoPUllRequestGenerator`
+
+#### Repository variable opcional
+
+- `PREVIEW_AZURE_CLIENT_ID`
+
+Ubicacion:
+
+- `landing repo > Settings > Secrets and variables > Actions > Variables`
+
+Uso:
+
+- si existe, el workflow genera un `ServiceAccount` con anotacion de Azure Workload Identity para previews
+
+## Runbook corto
+
+### Cuando se abre o actualiza un PR con label `preview`
+
+1. `landing/.github/workflows/sync-preview-gitops.yaml` renderiza manifests
+2. hace commit en `infra/generated/previews/pr-<numero>`
+3. el Git generator de Argo detecta esa carpeta
+4. crea `landing-pr-<numero>` y el namespace efimero
+
+### Cuando el PR se mergea o cierra
+
+1. el mismo workflow elimina la carpeta `infra/generated/previews/pr-<numero>`
+2. Argo detecta que ya no existe en Git
+3. elimina la `Application` efimera y hace `prune` de sus recursos
+
+### Cuando hay push a `main` en `landing`
+
+1. `landing/.github/workflows/sync-prod-gitops.yaml` actualiza `infra/generated/environments/prod/landing`
+2. Argo sincroniza `landing-prod`
