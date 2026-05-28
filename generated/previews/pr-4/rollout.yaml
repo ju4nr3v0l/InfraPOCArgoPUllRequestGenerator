@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: landingpage
+  labels:
+    app: landingpage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: landingpage
+  strategy:
+    blueGreen:
+      activeService: landingpage-active
+      previewService: landingpage-preview
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 30
+  template:
+    metadata:
+      labels:
+        app: landingpage
+    spec:
+      serviceAccountName: landing-preview
+      containers:
+        - name: landing
+          image: juanmarulanda/landingpocargoprpreview@sha256:6dafa8ec7f9551f27ec6937d0517c32022852f74d9d5865d81bbfffad19a06ab
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 20
