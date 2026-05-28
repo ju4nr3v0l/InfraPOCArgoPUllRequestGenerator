@@ -3,8 +3,9 @@ kind: Kustomization
 namespace: landing-prod
 
 resources:
-  - deployment.yaml
-  - service.yaml
+  - rollout.yaml
+  - service-active.yaml
+  - service-preview.yaml
 
 commonAnnotations:
   release.argocd.io/source-sha: "0e71c97e6a010581593f4fa79f99aa0688b05b59"

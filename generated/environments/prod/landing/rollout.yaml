@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: landingpage
   labels:
@@ -9,6 +9,12 @@ spec:
   selector:
     matchLabels:
       app: landingpage
+  strategy:
+    blueGreen:
+      activeService: landingpage-active
+      previewService: landingpage-preview
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 30
   template:
     metadata:
       labels:
