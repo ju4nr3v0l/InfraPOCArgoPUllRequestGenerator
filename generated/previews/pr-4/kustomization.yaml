@@ -11,7 +11,5 @@ resources:
 commonAnnotations:
   preview.argocd.io/pr-number: "4"
   preview.argocd.io/branch: "feature-cambio3"
-  preview.argocd.io/head-sha: "78d62150948e57ca3c13e5f7465b49a72679052a"
-  preview.argocd.io/image-digest: "sha256:6dafa8ec7f9551f27ec6937d0517c32022852f74d9d5865d81bbfffad19a06ab"
-
-nameSuffix: "-pr-4"
+  preview.argocd.io/head-sha: "359dc7bde651448e073fc5c51980a2f587ddd113"
+  preview.argocd.io/image-digest: "sha256:bbcefddbe833d418b0de7d58e39f3167ac5417c9e2294d40575cb4e5803dd3ef"

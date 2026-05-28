@@ -23,7 +23,7 @@ spec:
       serviceAccountName: landing-preview
       containers:
         - name: landing
-          image: juanmarulanda/landingpocargoprpreview@sha256:6dafa8ec7f9551f27ec6937d0517c32022852f74d9d5865d81bbfffad19a06ab
+          image: juanmarulanda/landingpocargoprpreview@sha256:bbcefddbe833d418b0de7d58e39f3167ac5417c9e2294d40575cb4e5803dd3ef
           ports:
             - containerPort: 80
           readinessProbe:
