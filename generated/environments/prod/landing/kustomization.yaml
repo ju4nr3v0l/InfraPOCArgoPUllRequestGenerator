@@ -8,5 +8,5 @@ resources:
   - service-preview.yaml
 
 commonAnnotations:
-  release.argocd.io/source-sha: "2913950d7787f40e14527eb579953fc18f3a1783"
-  release.argocd.io/image-digest: "sha256:4bd65eb15283e9309902ad8d642d342b39fd68a33ac97aa1f685ed3b75527042"
+  release.argocd.io/source-sha: "d22099ee82bbdfd22578952859823bbf207cb9d2"
+  release.argocd.io/image-digest: "sha256:06408d3d41096e89f7f9ed2ccd16e1648a8b8959cb1f52751a80335d5b37e123"

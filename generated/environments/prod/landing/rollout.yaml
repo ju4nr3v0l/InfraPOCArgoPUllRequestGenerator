@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: landing
-          image: juanmarulanda/landingpocargoprpreview@sha256:4bd65eb15283e9309902ad8d642d342b39fd68a33ac97aa1f685ed3b75527042
+          image: juanmarulanda/landingpocargoprpreview@sha256:06408d3d41096e89f7f9ed2ccd16e1648a8b8959cb1f52751a80335d5b37e123
           ports:
             - containerPort: 80
           readinessProbe:
