@@ -6,14 +6,6 @@ resources:
   - deployment.yaml
   - service.yaml
 
-configMapGenerator:
-  - name: landingpage-content
-    files:
-      - site/index.html
-      - site/style.css
-
 commonAnnotations:
-  release.argocd.io/source-sha: "e1142c482ac5396dceb545166e3e215511c21ba6"
-
-generatorOptions:
-  disableNameSuffixHash: true
+  release.argocd.io/source-sha: "7896b85ca381903be55f300fa686506e5c400744"
+  release.argocd.io/image-digest: "sha256:ac890512412be3f6cd20568ea5543c4e565f0739b5a859925f7810f4da29c316"
