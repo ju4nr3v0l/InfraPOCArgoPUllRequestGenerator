@@ -12,7 +12,7 @@ configMapGenerator:
       - site/index.html
       - site/style.css
 
-commonLabels:
+commonAnnotations:
   release.argocd.io/source-sha: "4ab4a5cdfec24bd2ec00ad8765d300b72465029f"
 
 generatorOptions:
