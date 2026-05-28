@@ -8,36 +8,26 @@ spec:
   goTemplateOptions:
     - missingkey=error
   generators:
-    - pullRequest:
-        github:
-          owner: ju4nr3v0l
-          repo: landingPOCArgoPUllRequestGenerator
-          tokenRef:
-            secretName: github-token
-            key: token
-          labels:
-            - preview
-        requeueAfterSeconds: 180
+    - git:
+        repoURL: 'https://github.com/ju4nr3v0l/InfraPOCArgoPUllRequestGenerator.git'
+        revision: main
+        directories:
+          - path: generated/previews/*
   template:
     metadata:
-      name: 'landing-pr-{{.number}}'
+      name: 'landing-{{.path.basename}}'
       labels:
         app.kubernetes.io/part-of: landing-pr-previews
         app.kubernetes.io/managed-by: argocd-applicationset-controller
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/ju4nr3v0l/landingPOCArgoPUllRequestGenerator.git'
-        targetRevision: '{{.head_sha}}'
-        path: k8s/preview
-        kustomize:
-          nameSuffix: '-pr-{{.number}}'
-          commonLabels:
-            preview.argocd.io/pr-number: '{{.number}}'
-            preview.argocd.io/branch: '{{.branch_slug}}'
+        repoURL: 'https://github.com/ju4nr3v0l/InfraPOCArgoPUllRequestGenerator.git'
+        targetRevision: main
+        path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'preview-pr-{{.number}}'
+        namespace: 'preview-{{.path.basename}}'
       syncPolicy:
         automated:
           prune: true

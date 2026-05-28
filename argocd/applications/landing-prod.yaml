@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/ju4nr3v0l/landingPOCArgoPUllRequestGenerator.git
+    repoURL: https://github.com/ju4nr3v0l/InfraPOCArgoPUllRequestGenerator.git
     targetRevision: main
-    path: k8s/prod
+    path: generated/environments/prod/landing
   destination:
     server: https://kubernetes.default.svc
     namespace: landing-prod
