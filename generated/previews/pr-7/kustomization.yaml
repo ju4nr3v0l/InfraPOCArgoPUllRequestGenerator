@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: preview-pr-7
+
+resources:
+  - rollout.yaml
+  - service-active.yaml
+  - service-preview.yaml
+  - serviceaccount.yaml
+
+commonAnnotations:
+  preview.argocd.io/pr-number: "7"
+  preview.argocd.io/branch: "feature-cambio7"
+  preview.argocd.io/head-sha: "86748df3a2a06d8518a2dee08e2f7bb5307732cc"
+  preview.argocd.io/image-digest: "sha256:27640a03c89ac6e208a4899b7ac4579ffc5e278282af881d7a010d9655e597bc"
